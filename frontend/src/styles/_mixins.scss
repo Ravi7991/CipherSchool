@@ -1,0 +1,194 @@
+// Responsive breakpoints
+@mixin mobile {
+  @media (max-width: #{$mobile-max}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$mobile-max + 1px}) and (max-width: #{$tablet-max}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$tablet-max + 1px}) {
+    @content;
+  }
+}
+
+@mixin large-desktop {
+  @media (min-width: #{$desktop-max + 1px}) {
+    @content;
+  }
+}
+
+// Container mixin
+@mixin container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+
+  @include mobile {
+    padding: 0 $spacing-md;
+  }
+}
+
+// Button mixins
+@mixin btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: $border-radius;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px; // Touch-friendly minimum
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  @include mobile {
+    min-height: 48px; // Larger touch target on mobile
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+@mixin btn-primary {
+  @include btn-base;
+  background-color: $primary-color;
+  color: white;
+  border-color: $primary-color;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-dark;
+    border-color: $primary-dark;
+  }
+
+  &:focus {
+    outline: 2px solid $primary-light;
+    outline-offset: 2px;
+  }
+}
+
+@mixin btn-secondary {
+  @include btn-base;
+  background-color: white;
+  color: $text-primary;
+  border-color: $border-color;
+
+  &:hover:not(:disabled) {
+    background-color: $bg-secondary;
+    border-color: $border-dark;
+  }
+
+  &:focus {
+    outline: 2px solid $primary-light;
+    outline-offset: 2px;
+  }
+}
+
+@mixin btn-danger {
+  @include btn-base;
+  background-color: $error-color;
+  color: white;
+  border-color: $error-color;
+
+  &:hover:not(:disabled) {
+    background-color: $error-dark;
+    border-color: $error-dark;
+  }
+
+  &:focus {
+    outline: 2px solid $error-light;
+    outline-offset: 2px;
+  }
+}
+
+// Form mixins
+@mixin form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  font-size: $font-size-base;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  min-height: 44px; // Touch-friendly
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+
+  &::placeholder {
+    color: $text-muted;
+  }
+
+  @include mobile {
+    min-height: 48px;
+    font-size: 16px; // Prevents zoom on iOS
+  }
+}
+
+// Card mixin
+@mixin card {
+  background: $bg-primary;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border-color;
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Text utilities
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Accessibility
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Focus visible for better keyboard navigation
+@mixin focus-visible {
+  &:focus-visible {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+}

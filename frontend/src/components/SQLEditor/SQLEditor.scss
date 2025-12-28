@@ -1,0 +1,74 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.sql-editor {
+  &__container {
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    overflow: hidden;
+    background-color: white;
+
+    // Monaco editor overrides
+    .monaco-editor {
+      .margin {
+        background-color: $bg-secondary;
+      }
+
+      .current-line {
+        border: none !important;
+        background-color: rgba($primary-color, 0.05) !important;
+      }
+
+      .selected-text {
+        background-color: rgba($primary-color, 0.2) !important;
+      }
+
+      .cursor {
+        color: $primary-color !important;
+      }
+    }
+
+    @include mobile {
+      // Ensure editor is touch-friendly on mobile
+      .monaco-editor {
+        .view-lines {
+          .view-line {
+            font-size: 16px; // Prevent zoom on iOS
+          }
+        }
+      }
+    }
+  }
+
+  &__footer {
+    margin-top: 0.5rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid $border-light;
+  }
+
+  &__hint {
+    font-size: $font-size-xs;
+    color: $text-muted;
+    font-style: italic;
+
+    @include mobile {
+      display: none; // Hide keyboard shortcut hint on mobile
+    }
+  }
+}
+
+// Custom scrollbar for Monaco editor
+.sql-editor__container {
+  .monaco-scrollable-element {
+    .scrollbar {
+      .slider {
+        background-color: rgba($text-muted, 0.3);
+        border-radius: 3px;
+
+        &:hover {
+          background-color: rgba($text-muted, 0.5);
+        }
+      }
+    }
+  }
+}

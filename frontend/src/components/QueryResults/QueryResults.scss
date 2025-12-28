@@ -1,0 +1,188 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.query-results {
+  &__header {
+    @include flex-between;
+    margin-bottom: 1rem;
+    gap: 1rem;
+
+    h3 {
+      margin: 0;
+      color: $text-primary;
+      font-size: 1.1rem;
+    }
+
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+
+  &__placeholder {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: $text-muted;
+    font-style: italic;
+    border: 2px dashed $border-color;
+    border-radius: $border-radius;
+  }
+
+  &__error {
+    .error-message {
+      padding: 1rem;
+      background-color: $error-light;
+      border-radius: $border-radius;
+      border-left: 4px solid $error-color;
+
+      h4 {
+        margin: 0 0 0.5rem 0;
+        color: $error-dark;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      p {
+        margin: 0;
+        color: $error-dark;
+        font-size: $font-size-sm;
+        font-family: $font-family-mono;
+        line-height: 1.4;
+        word-break: break-word;
+      }
+    }
+  }
+
+  &__success {
+    .results-info {
+      margin-bottom: 1rem;
+
+      &__stats {
+        display: flex;
+        gap: 1rem;
+        font-size: $font-size-sm;
+        color: $text-secondary;
+
+        @include mobile {
+          flex-direction: column;
+          gap: 0.25rem;
+        }
+      }
+
+      &__count {
+        font-weight: 500;
+        color: $success-dark;
+      }
+
+      &__time {
+        color: $text-muted;
+      }
+
+      &__demo {
+        color: $warning-dark;
+        font-weight: 500;
+        font-style: italic;
+      }
+    }
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 2rem;
+    background-color: $success-light;
+    border-radius: $border-radius;
+    border-left: 4px solid $success-color;
+
+    p {
+      margin: 0;
+      color: $success-dark;
+      font-weight: 500;
+    }
+  }
+}
+
+.results-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  background-color: white;
+  max-height: 400px;
+  overflow-y: auto;
+
+  @include mobile {
+    margin: 0 -1rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-sm;
+
+  &__header {
+    background-color: $success-light;
+    color: $success-dark;
+    font-weight: 600;
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid $border-color;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    @include mobile {
+      padding: 0.625rem 0.5rem;
+      font-size: $font-size-xs;
+    }
+  }
+
+  &__row {
+    &:nth-child(even) {
+      background-color: rgba($success-light, 0.3);
+    }
+
+    &:hover {
+      background-color: rgba($success-color, 0.1);
+    }
+  }
+
+  &__cell {
+    padding: 0.75rem;
+    border-bottom: 1px solid $border-light;
+    color: $text-primary;
+    white-space: nowrap;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @include mobile {
+      padding: 0.625rem 0.5rem;
+      font-size: $font-size-xs;
+      max-width: 150px;
+    }
+  }
+
+  &__null {
+    color: $text-muted;
+    font-style: italic;
+    font-size: $font-size-xs;
+  }
+}
+
+// Success state styling
+.query-results__success {
+  .results-table {
+    border: 1px solid rgba($success-color, 0.3);
+  }
+}
+
+// Loading state
+.query-results .loading-spinner {
+  padding: 2rem 1rem;
+}

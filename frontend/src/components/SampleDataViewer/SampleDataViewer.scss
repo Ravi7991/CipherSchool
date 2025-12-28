@@ -1,0 +1,196 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.sample-data-viewer {
+  &__header {
+    margin-bottom: 1.5rem;
+
+    h3 {
+      margin-bottom: 0.5rem;
+      color: $text-primary;
+      font-size: 1.1rem;
+    }
+  }
+
+  &__description {
+    color: $text-secondary;
+    font-size: $font-size-sm;
+    margin: 0;
+  }
+
+  &__empty {
+    color: $text-muted;
+    font-style: italic;
+    text-align: center;
+    padding: 2rem;
+  }
+}
+
+.table-tabs {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid $border-color;
+  overflow-x: auto;
+  padding-bottom: 0;
+
+  &__tab {
+    padding: 0.75rem 1rem;
+    border: none;
+    background: none;
+    color: $text-secondary;
+    font-size: $font-size-sm;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    min-height: 44px; // Touch-friendly
+
+    &:hover {
+      color: $text-primary;
+      background-color: $bg-secondary;
+    }
+
+    &--active {
+      color: $primary-color;
+      border-bottom-color: $primary-color;
+      background-color: rgba($primary-color, 0.05);
+    }
+
+    @include mobile {
+      min-height: 48px;
+      padding: 0.75rem 0.875rem;
+      font-size: $font-size-xs;
+    }
+  }
+
+  @include mobile {
+    gap: 0;
+    margin-bottom: 0.75rem;
+  }
+}
+
+.table-content {
+  &__description {
+    color: $text-secondary;
+    font-size: $font-size-sm;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background-color: $bg-tertiary;
+    border-radius: $border-radius;
+    border-left: 3px solid $primary-color;
+  }
+
+  &__error {
+    padding: 1rem;
+    background-color: $error-light;
+    border-radius: $border-radius;
+    border-left: 3px solid $error-color;
+
+    p {
+      color: $error-dark;
+      margin: 0;
+      font-size: $font-size-sm;
+    }
+  }
+
+  &__empty {
+    text-align: center;
+    color: $text-muted;
+    font-style: italic;
+    padding: 2rem;
+  }
+
+  &__note {
+    margin-top: 0.75rem;
+    font-size: $font-size-xs;
+    color: $text-muted;
+    font-style: italic;
+    text-align: center;
+  }
+}
+
+.data-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  background-color: white;
+
+  @include mobile {
+    // Enable horizontal scrolling on mobile
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-sm;
+
+  &__header {
+    background-color: $bg-secondary;
+    color: $text-primary;
+    font-weight: 600;
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid $border-color;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    @include mobile {
+      padding: 0.625rem 0.5rem;
+      font-size: $font-size-xs;
+    }
+  }
+
+  &__row {
+    &:nth-child(even) {
+      background-color: rgba($bg-secondary, 0.3);
+    }
+
+    &:hover {
+      background-color: rgba($primary-color, 0.05);
+    }
+  }
+
+  &__cell {
+    padding: 0.75rem;
+    border-bottom: 1px solid $border-light;
+    color: $text-primary;
+    white-space: nowrap;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @include mobile {
+      padding: 0.625rem 0.5rem;
+      font-size: $font-size-xs;
+      max-width: 150px;
+    }
+  }
+
+  &__null {
+    color: $text-muted;
+    font-style: italic;
+    font-size: $font-size-xs;
+  }
+}
+
+// Responsive table improvements
+@include mobile {
+  .data-table-wrapper {
+    margin: 0 -1rem; // Extend to container edges on mobile
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .table-content__description {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    border-radius: 0;
+  }
+}

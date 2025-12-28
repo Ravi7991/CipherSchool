@@ -1,0 +1,27 @@
+{
+  "name": "cipher-sql-studio",
+  "version": "1.0.0",
+  "description": "Browser-based SQL learning platform",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm start",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": [
+    "sql",
+    "learning",
+    "education",
+    "react",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  },
+  "dependencies": {
+    "axios": "^1.13.2"
+  }
+}

@@ -1,0 +1,171 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.assignment-list {
+  padding: 2rem 0;
+
+  &__container {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    @include mobile {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    color: $text-primary;
+    margin-bottom: 1rem;
+
+    @include mobile {
+      font-size: 2rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.1rem;
+    color: $text-secondary;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @include mobile {
+      font-size: 1rem;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  &__error {
+    text-align: center;
+    padding: 3rem 1rem;
+
+    p {
+      color: $error-color;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: $text-secondary;
+    font-size: 1.1rem;
+  }
+}
+
+.assignment-card {
+  background: white;
+  border-radius: $border-radius-lg;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: $shadow-sm;
+  transition: all 0.2s ease;
+  border: 1px solid $border-color;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+    border-color: $primary-color;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0;
+    flex: 1;
+  }
+
+  &__difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: $border-radius;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+
+    &--easy {
+      background-color: $success-light;
+      color: $success-dark;
+    }
+
+    &--medium {
+      background-color: $warning-light;
+      color: $warning-dark;
+    }
+
+    &--hard {
+      background-color: $error-light;
+      color: $error-dark;
+    }
+  }
+
+  &__description {
+    color: $text-secondary;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+  }
+
+  &__tables {
+    color: $text-secondary;
+    font-style: italic;
+  }
+
+  &__arrow {
+    color: $primary-color;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  @include mobile {
+    padding: 1.25rem;
+
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    &__title {
+      font-size: 1.1rem;
+    }
+
+    &__footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+}

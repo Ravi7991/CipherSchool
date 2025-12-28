@@ -1,0 +1,25 @@
+{
+  "name": "cipher-sql-studio-backend",
+  "version": "1.0.0",
+  "description": "Backend for CipherSQLStudio",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "seed": "node src/database/seedMongo.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "pg": "^8.11.3",
+    "mongoose": "^7.5.0",
+    "openai": "^4.0.0",
+    "helmet": "^7.0.0",
+    "express-rate-limit": "^6.10.0",
+    "joi": "^17.9.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
